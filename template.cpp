@@ -21,7 +21,7 @@ struct FastIO {
 	getnumb() {
 		T c = gc();
 		
-		std::function<T()> is_negative = [&]() -> T {
+		std::function<bool()> is_negative = [&]() -> bool {
 			for (; c < '0' || c > '9'; c = gc()) {
 				if (c == '-') {
 					c = gc();
