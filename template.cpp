@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 
-#define gc(x) getchar_unlocked(x)
-#define pc(x) putchar_unlocked(x)
+#define gc(x) getchar(x)
+#define pc(x) putchar(x)
 #define endline pc('\n')
 
 typedef long long LL;
@@ -41,6 +41,23 @@ struct FastIO {
 		return negative ? -val : val;
 	}
 	
+	std::string
+	getstr(bool line_scan = false) {
+		std::function<bool(char&)> is_separator = [&](char &c) -> bool {
+			return c == '\n' || (c == ' ' && !line_scan);
+		};
+		
+		char c;
+		std::string str = "";
+		
+		while ((c = gc()) && is_separator(c));
+		do {
+			str += c;
+		} while ((c = gc()) && !is_separator(c));
+		
+		return str;
+	}
+	
 	template <typename T> void
 	printnumb(T val, std::string suffix = "") {
 		if (val == 0) {
@@ -61,7 +78,12 @@ struct FastIO {
 		};
 		
 		_print(val);
-		for (char &c: suffix)
+		printstr(suffix);
+	}
+	
+	void
+	printstr(std::string &str) {
+		for (char &c: str)
 			pc(c);
 	}
 } fio;
