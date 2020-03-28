@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 
-#define gc(x) getchar(x)
-#define pc(x) putchar(x)
+#define gc(x) getchar_unlocked(x)
+#define pc(x) putchar_unlocked(x)
 #define endline pc('\n')
 
 typedef long long LL;
