@@ -44,7 +44,7 @@ struct FastIO {
 	std::string
 	getstr(bool line_scan = false) {
 		std::function<bool(char&)> is_separator = [&](char &c) -> bool {
-			return c == '\n' || (c == ' ' && !line_scan);
+			return c == '\n' || (c == ' ' && !line_scan) || c == EOF;
 		};
 		
 		char c;
@@ -62,6 +62,7 @@ struct FastIO {
 	printnumb(T val, std::string suffix = "") {
 		if (val == 0) {
 			pc('0');
+			printstr(suffix);
 			return;
 		}
 		if (val < 0) {
