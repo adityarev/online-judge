@@ -1,0 +1,145 @@
+/*
+ * First time using STL set
+ * Credit to: https://github.com/wiwitrifai/competitive-programming/tree/master/indonesian-local/itbpc/2010-final
+ */
+
+#include <algorithm>
+#include <climits>
+#include <cstdio>
+#include <cstring>
+#include <functional>
+#include <iostream>
+#include <list>
+#include <map>
+#include <queue>
+#include <set>
+#include <string>
+#include <vector>
+
+#define gc(x) getchar_unlocked(x)
+#define pc(x) putchar_unlocked(x)
+#define endline pc('\n')
+
+typedef long long LL;
+
+struct FastIO {
+	template <typename T> T
+	getnumb() {
+		T c = gc();
+		
+		std::function<bool()> is_negative = [&]() -> bool {
+			for (; c < '0' || c > '9'; c = gc()) {
+				if (c == '-') {
+					c = gc();
+					if (c >= '0' && c <= '9')
+						return true;
+				}
+			}
+			return false;
+		};
+		
+		bool negative = is_negative();
+		T val = 0;
+		
+		for (; c >= '0' && c <= '9'; c = gc())
+			val = (val << 1) + (val << 3) + c - (T)'0';
+		
+		return negative ? -val : val;
+	}
+	
+	std::string
+	getstr(bool line_scan = false) {
+		std::function<bool(char&)> is_separator = [&](char &c) -> bool {
+			return c == '\n' || (c == ' ' && !line_scan) || c == EOF;
+		};
+		
+		char c;
+		std::string str = "";
+		
+		while ((c = gc()) && is_separator(c));
+		do {
+			str += c;
+		} while ((c = gc()) && !is_separator(c));
+		
+		return str;
+	}
+	
+	template <typename T> void
+	printnumb(T val, std::string suffix = "") {
+		if (val == 0) {
+			pc('0');
+			printstr(suffix);
+			return;
+		}
+		if (val < 0) {
+			pc('-');
+			val = -val;
+		}
+		
+		std::function<void(T)> _print = [&](T x) -> void {
+			if (x == 0)
+				return;
+			
+			_print(x / 10);
+			pc('0' + (x % 10));
+		};
+		
+		_print(val);
+		printstr(suffix);
+	}
+	
+	void
+	printstr(std::string &str) {
+		for (char &c: str)
+			pc(c);
+	}
+} fio;
+
+
+void
+init_s(std::multiset<int>& s) {
+	int n = fio.getnumb<int>();
+	
+	for (int i = 0; i < n; i++) {
+		int x = fio.getnumb<int>();
+		s.insert(x);
+	}
+}
+
+void
+do_query(std::multiset<int>& s) {
+	static const std::string FIND = "CARI";
+	static const std::string REMOVE = "HAPUS";
+	
+	std::string command = fio.getstr();
+	int x = fio.getnumb<int>();
+	
+	if (command == FIND) {
+		auto it = s.lower_bound(x);
+		
+		if (it != s.end())
+			fio.printnumb<int>(*it, "\n");
+		else
+			puts("-1");
+	}
+	if (command == REMOVE) {
+		auto it = s.find(x);
+		
+		if (it != s.end())
+			s.erase(it);
+	}
+}
+
+int
+main() {
+	std::multiset<int> s;
+	init_s(s);
+	
+	int que = fio.getnumb<int>();
+	
+	for (int i = 0; i < que; i++)
+		do_query(s);
+	
+	return 0;
+}
+
