@@ -62,16 +62,6 @@ struct FastIO {
 	
 	template <typename T> void
 	printnumb(T val, std::string suffix = "") {
-		if (val == 0) {
-			pc('0');
-			printstr(suffix);
-			return;
-		}
-		if (val < 0) {
-			pc('-');
-			val = -val;
-		}
-		
 		std::function<void(T)> _print = [&](T x) -> void {
 			if (x == 0)
 				return;
@@ -80,7 +70,15 @@ struct FastIO {
 			pc('0' + (x % 10));
 		};
 		
-		_print(val);
+		if (val != 0) {
+			if (val < 0) {
+				pc('-');
+				val = -val;
+			}
+			_print(val);
+		} else {
+			pc('0');
+		}
 		printstr(suffix);
 	}
 	
