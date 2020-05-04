@@ -5,6 +5,8 @@
 #include <vector>
 
 const int INITIAL_NODE = 1;
+const int SCALE = 4;
+const int OUT_RANGE_VALUE = 0;
 
 class SegmentTree {
 private:
@@ -15,13 +17,13 @@ private:
 
 public:
 	SegmentTree();
-	SegmentTree(std::vector<int>&);
-	void set_arr(std::vector<int>&,bool);
+	SegmentTree(std::vector<int> arr);
+	void set_arr(std::vector<int> arr, bool auto_build = true);
 	std::vector<int> get_arr();
 	std::vector<int> get_tree();
 	void build();
-	void update(int,int);
-	int query(int,int);
+	void update(int idx, int val);
+	int query(int l, int r);
 };
 
 
@@ -47,13 +49,13 @@ SegmentTree::SegmentTree() {
 	reset();
 }
 
-SegmentTree::SegmentTree(std::vector<int>& arr) {
+SegmentTree::SegmentTree(std::vector<int> arr) {
 	reset();
 	set_arr(arr, true);
 }
 
 void
-SegmentTree::set_arr(std::vector<int>& arr, bool auto_build = true) {
+SegmentTree::set_arr(std::vector<int> arr, bool auto_build) {
 	this->arr = arr;
 	if (auto_build)
 		build();
@@ -77,7 +79,6 @@ SegmentTree::build() {
 	_build = [&](int node, int start, int end) -> void {
 		if (start == end) {
 			tree[node] = arr[start];
-			
 			return;
 		}
 		
@@ -92,7 +93,7 @@ SegmentTree::build() {
 	int start = 0;
 	int end = len - 1;
 	
-	tree = std::vector<int>(len * 2, 0);
+	tree = std::vector<int>(len * SCALE, 0);
 	_build(INITIAL_NODE, start, end);
 }
 
@@ -105,7 +106,6 @@ SegmentTree::update(int idx, int val) {
 		if (start == end) {
 			arr[idx] = val;
 			tree[node] = val;
-			
 			return;
 		}
 		
@@ -132,7 +132,7 @@ SegmentTree::query(int l, int r) {
 	std::function<int(int,int,int)>
 	_query = [&](int node, int start, int end) -> int {
 		if (r < start || end < l)
-			return 0;
+			return OUT_RANGE_VALUE;
 		if (l <= start && end <= r)
 			return tree[node];
 		
