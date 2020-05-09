@@ -1,0 +1,184 @@
+O+ O- ?
+O+ ? O-
+AB- AB+ ?
+AB+ ? O+
+AB- AB- ?
+AB- O+ ?
+AB- O- ?
+AB- ? O-
+O- ? AB-
+? O- AB-
+? O- A-
+E N D
+
+B+ ? B+
+A+ ? A+
+B- ? B-
+A- ? A-
+B- ? A+
+A+ ? B-
+E N D
+
+
+// Sample Case
+O+ O- ?
+O+ ? OAB- AB+ ?
+AB+ ? O+
+E N D
+
+
+// All A
+A- A+ ?
+A+ A+ ?
+A- A- ?
+A- ? A+
+A+ ? A+
+A- ? A-
+A+ ? A-
+E N D
+
+
+// All B
+B- B+ ?
+B+ B+ ?
+B- B- ?
+B- ? B+
+B+ ? B+
+B- ? B-
+B+ ? B-
+E N D
+
+// All AB
+AB- AB+ ?
+AB+ AB+ ?
+AB- AB- ?
+AB- ? AB+
+AB+ ? AB+
+AB- ? AB-
+AB+ ? AB-
+E N D
+
+
+// All O
+O- O+ ?
+O+ O+ ?
+O- O- ?
+O- ? O+
+O+ ? O+
+O- ? O-
+O+ ? O-
+E N D
+
+
+// A and B
+A+ B+ ?
+A+ B- ?
+A- B- ?
+A- B+ ?
+
+A+ ? B+
+A+ ? B-
+A- ? B+
+A- ? B-
+
+B+ ? A+
+B+ ? A-
+B- ? A+
+B- ? A-
+
+E N D
+
+
+// A and O
+A+ O+ ?
+A+ O- ?
+A- O- ?
+A- O+ ?
+
+A+ ? O+
+A+ ? O-
+A- ? O+
+A- ? O-
+
+O+ ? A+
+O+ ? A-
+O- ? A+
+O- ? A-
+
+E N D
+
+
+// A and AB
+A+ AB+ ?
+A+ AB- ?
+A- AB- ?
+A- AB+ ?
+
+A+ ? AB+
+A+ ? AB-
+A- ? AB+
+A- ? AB-
+
+AB+ ? A+
+AB+ ? A-
+AB- ? A+
+AB- ? A-
+
+E N D
+
+
+// B and O
+B+ O+ ?
+B+ O- ?
+B- O- ?
+B- O+ ?
+
+B+ ? O+
+B+ ? O-
+B- ? O+
+B- ? O-
+
+O+ ? B+
+O+ ? B-
+O- ? B+
+O- ? B-
+
+E N D
+
+
+// B and AB
+B+ AB+ ?
+B+ AB- ?
+B- AB- ?
+B- AB+ ?
+
+B+ ? AB+
+B+ ? AB-
+B- ? AB+
+B- ? AB-
+
+AB+ ? B+
+AB+ ? B-
+AB- ? B+
+AB- ? B-
+
+E N D
+
+
+// AB and O
+AB+ O+ ?
+AB+ O- ?
+AB- O- ?
+AB- O+ ?
+
+AB+ ? O+
+AB+ ? O-
+AB- ? O+
+AB- ? O-
+
+O+ ? AB+
+O+ ? AB-
+O- ? AB+
+O- ? AB-
+
+E N D
